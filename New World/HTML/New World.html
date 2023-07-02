@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <title>New World — Keep Talking and Nobody Explodes Module</title>
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/ktane-utils.js"></script>
+    <script src="js/ruleseed.js"></script>
+    <style>
+        .dark table, table {
+            margin: 1em auto;
+            border: none;
+        }
+
+        .page-footer::before { content: 'Page '; }
+        .page-footer::after { content: ' of 2'; }
+    </style>
+	<script>
+		var defaultRules = null;
+
+	    function getDefaultRules()
+		{
+			if(defaultRules !== null)
+				return;
+			defaultRules = {};
+			for(var i = 1; i <= 8; i++)
+			{
+		       defaultRules[`rule-${i}`] = document.getElementById(`rule-${i}`).innerText;
+			}
+		}
+		function setDefaultRules()
+		{
+			getDefaultRules();
+		    for(var i = 1; i <= 8; i++)
+			{
+			    document.getElementById(`rule-${i}`).innerText = defaultRules[`rule-${i}`];
+			}
+
+		}
+		function setRules(rnd)
+		{
+		    getDefaultRules();
+			// Generate Rule Seed #2
+			var rule = new Array(8);
+			for(var i = 0; i<8; i++)
+			{
+				var span = document.getElementById(`rule-${i+1}`);
+				rule[i] = span;
+			}
+			var random = rnd.nextMax(8);
+			for(var i = 0; i < random; i++)
+			{
+				var r1 = rnd.nextMax(8);
+				var r2 = rnd.nextMax(8);
+				var temp = rule[r1];
+				rule[r1] = rule[r2];
+				rule[r2] = temp;
+			}
+			for(var i = 0; i < 8; i++)
+			{
+			    var span = rule[i];
+
+				switch(i)
+				{
+					case 0: span.innerText = `Number of D Batteries`; break;
+					case 1: span.innerText = `Number of AA Batteries`; break;
+					case 2: span.innerText = `Number of Battery Holders`; break;
+					case 3: span.innerText = `Number of Port Plates`; break;
+					case 4: span.innerText = `Number of Ports`; break;
+					case 5: span.innerText = `Number of Unlit Indicators`; break;
+					case 6: span.innerText = `Number of Lit Indicators`; break;
+					case 7: span.innerText = `Digits of Serial Number`; break;
+				}
+			}
+			
+			// Generate Maze
+			
+		}
+	</script>
+</head>
+<body>
+    <div class="section">
+        <div class="page page-bg-01">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">New World</span>
+            </div>
+            <div class="page-content">
+                <img src="img/Component/New World.svg" class="diagram">
+                <h2>On the Subject of New World</h2>
+                <p class="flavour-text">I swear I was just here before...</p>
+
+                <p>This module uses two rule seeds. To visit the necessary pages for this module, copy "https://ktane.timwi.de/HTML/New%20World.html#" into your search bar and append any necessary rule seed.</p>
+                <p>This module features a flashing text showing multiple digits and four arrow buttons. The flashing text lists digits used in a rule seed. To tell the difference of the first and last digits, a long space is placed between the last and first digits.</p>
+                <p>Visit the rule-seeded page using the first rule seed provided to obtain a second rule seed.</p>
+                <p>Visit the rule-seeded page using the second rule seed obtained to have the maze used by the module.</p>
+                <p>To advance the module further, interact with the background of the flashing text to reveal a maze. At this point, the flashing text will no longer appear and the arrow buttons can be successfully interacted with.</p>
+                <p>When the maze shows up, the defuser has to navigate the green square to the red triangle. Once any of the arrow buttons have been pressed, the maze becomes hidden to the defuser.</p>
+				<p>To solve the module, go through a maze provided by a different rule seed obtained from the flashed rule seed.</p>
+				<p>Running into any walls of the maze results a strike and shows the location of the red triangle and current location of the green square.</p>
+
+            </div>
+            <div class="page-footer relative-footer">1</div>
+        </div>
+
+        <div class="page page-bg-02">
+            <div class="page-header">
+                <span class="page-header-doc-title">Keep Talking and Nobody Explodes Mod</span>
+                <span class="page-header-section-title">New World</span>
+            </div>
+            <div class="page-content">
+                <p>Append these numbers in the following order for the second rule seed, then modulo by 2147483647:</p>
+				<span class='rule', id='rule-1'>Number of D Batteries</span><br>
+				<span class='rule', id='rule-2'>Number of AA Batteries</span><br>
+				<span class='rule', id='rule-3'>Number of Battery Holders</span><br>
+				<span class='rule', id='rule-4'>Number of Port Plates</span><br>
+				<span class='rule', id='rule-5'>Number of Ports</span><br>
+				<span class='rule', id='rule-6'>Number of Unlit Indicators</span><br>
+				<span class='rule', id='rule-7'>Number of Lit Indicators</span><br>
+				<span class='rule', id='rule-8'>Digits of Serial Number</span>
+				<br>
+				<br>
+				<br>
+				<p>Assuming this is the correct rule seed, the maze below is the maze used by the module.</p>
+				<div class="tmaze-row"><div class='tmaze-td'><div class='tmaze-outer'></div></div></div>
+            </div>
+            <div class="page-footer relative-footer">2</div>
+        </div>
+    </div>
+</body>
+</html>
